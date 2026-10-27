@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FG Material Gallery</title>
+  <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">FG</div>
+    <div>
+      <h1>FG Material Gallery</h1>
+      <p>Material Reference &amp; Preview</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">MATERIAL REFERENCE CENTER</p>
+        <h2>Find a material. View its references.</h2>
+        <p class="subtext">Load your GALLERY.zip once in this browser session, then search by material code or folder name.</p>
+      </div>
+      <label class="upload-btn" for="zipInput"><span>＋</span> Select ZIP file</label>
+      <input id="zipInput" type="file" accept=".zip,application/zip" hidden>
+    </section>
+
+    <section class="status-row">
+      <div id="status" class="status">Please select your GALLERY.zip file to begin.</div>
+      <div id="counts" class="counts">0 materials</div>
+    </section>
+
+    <section class="search-panel">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input id="searchInput" type="search" placeholder="Search material code (e.g. XP013210-10-1201)..." autocomplete="off" disabled>
+        <button id="clearBtn" class="clear-btn" type="button">Clear</button>
+      </div>
+      <div class="filters">
+        <label for="categoryFilter">Reference type</label>
+        <select id="categoryFilter" disabled>
+          <option value="all">All references</option>
+          <option value="preview">Preview</option>
+          <option value="specification">Specification</option>
+          <option value="stacking">Stacking Dimension</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="emptyState" class="empty-state">
+      <div class="empty-icon">▧</div>
+      <h3>Your material library will appear here</h3>
+      <p>Select the ZIP file. The gallery reads the images directly in your browser; it does not upload them to a server.</p>
+    </section>
+
+    <section id="results" class="results" aria-live="polite"></section>
+  </main>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button id="closeLightbox" class="lightbox-close" aria-label="Close preview">×</button>
+    <button id="prevImage" class="lightbox-nav prev" aria-label="Previous image">‹</button>
+    <div class="lightbox-content">
+      <img id="lightboxImage" alt="Material reference preview">
+      <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+    <button id="nextImage" class="lightbox-nav next" aria-label="Next image">›</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
