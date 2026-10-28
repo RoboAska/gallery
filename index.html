@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b2a">
+  <title>FG Material Gallery</title>
+  <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="FG Material Gallery home">
+      <span class="brand-mark">FG</span>
+      <span class="brand-copy"><strong>FG Material Gallery</strong><small>Material Reference &amp; Preview</small></span>
+    </a>
+    <div class="topbar-note">MATERIAL DIRECTORY</div>
+  </header>
+  <main id="top" class="page-wrap">
+    <section class="hero">
+      <div class="eyebrow"><span class="status-dot"></span> MATERIAL REFERENCE CENTER</div>
+      <h1>Find your material.</h1>
+      <p>Search by material code or name, then open <b>SOURCE</b> to view the actual photos in its material-code folder.</p>
+      <label class="searchbox" for="searchInput">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.5 4.5"></path></svg>
+        <input id="searchInput" type="search" placeholder="Search material code or material name..." autocomplete="off">
+        <button id="clearSearch" class="clear-search" type="button" aria-label="Clear search" hidden>×</button>
+      </label>
+      <div class="search-hint">Try a code like <button class="example-search" type="button" data-search="FNA-PE11005">FNA-PE11005</button></div>
+    </section>
+
+    <section class="results-section" aria-live="polite">
+      <div class="results-heading">
+        <div><h2>Material Directory</h2><p id="resultsSummary">Loading materials…</p></div>
+        <label class="sort-wrap" for="sortSelect"><span>Sort by</span><select id="sortSelect"><option value="code">Material Code</option><option value="name">Material Name</option></select></label>
+      </div>
+      <div class="table-shell">
+        <table>
+          <thead><tr><th class="code-col">MATERIAL CODE</th><th>MATERIAL NAME</th><th class="uom-col">UOM</th><th class="source-col">SOURCE</th></tr></thead>
+          <tbody id="materialsBody"></tbody>
+        </table>
+        <div id="emptyState" class="empty-state" hidden><div class="empty-icon">⌕</div><h3>No materials found</h3><p>Try another material code or name.</p></div>
+      </div>
+      <div class="table-footer"><span id="pageSummary"></span><div class="pagination"><button id="prevPage" type="button" disabled>← Previous</button><button id="nextPage" type="button">Next →</button></div></div>
+    </section>
+    <footer>FG Material Gallery <span>•</span> Local material reference</footer>
+  </main>
+
+  <dialog id="photoDialog" class="photo-dialog" aria-labelledby="photoTitle">
+    <div class="dialog-head"><div><span class="dialog-kicker">MATERIAL SOURCE</span><h2 id="photoTitle">Material Photos</h2><p id="photoSubtitle"></p></div><button id="closeDialog" class="close-dialog" type="button" aria-label="Close photo viewer">×</button></div>
+    <div id="photoGallery" class="photo-gallery"></div>
+    <div id="noPhotos" class="no-photos" hidden><div class="empty-icon">▧</div><h3>No photos indexed for this material</h3><p>Make sure the material's folder is inside <code>GALLERY/</code>, then run <code>build_photo_index.py</code> to index the photos.</p></div>
+    <div class="dialog-foot"><span id="photoCount"></span><button id="closeDialogBottom" class="secondary-button" type="button">Close</button></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="materials.js"></script>
+  <script src="photos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
